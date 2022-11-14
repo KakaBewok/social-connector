@@ -1,0 +1,3 @@
+{
+    "mongoURL": "mongodb+srv://admin:123@cluster0.las9bhw.mongodb.net/?retryWrites=true&w=majority"
+}
