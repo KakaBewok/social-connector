@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 
+// schema() berfungsi untuk membuat seperti apa kerangka/struktur data yang akan kita input ke dalam database
 const UserSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -22,5 +23,5 @@ const UserSchema = new mongoose.Schema({
     default: Date.now,
   },
 });
-
+// mengkonversi schema() ke dalam model/blueprint
 module.exports = User = mongoose.model("user", UserSchema);
