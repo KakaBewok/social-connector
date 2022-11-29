@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const gravatar = require("gravatar");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 const { check, validationResult } = require("express-validator");
 const User = require("../../models/User.js");
 
@@ -38,8 +39,11 @@ router.post(
       }
       // mengambil gravatar user jika user belum ada
       const avatar = gravatar.url(email, {
+        // s=size, ukuran foto
         s: "200",
+        // r=rating, kualitas foto
         r: "pg",
+        // d=default, jika foto error akan ditampilkan apa, jika mm maka foto kosong
         d: "mm",
       });
       // membuat instansiasi object yang berisi request dari user diatas
@@ -58,6 +62,7 @@ router.post(
       await user.save();
 
       // return JWT
+
       res.send("User registered.");
     } catch (err) {
       console.error(err.message);
