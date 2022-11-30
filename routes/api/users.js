@@ -1,23 +1,24 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const gravatar = require("gravatar");
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-const { check, validationResult } = require("express-validator");
-const User = require("../../models/User.js");
+const gravatar = require('gravatar');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const config = require('config');
+const { check, validationResult } = require('express-validator');
+const User = require('../../models/User.js');
 
 // @route   POST api/users
 // @desc    Register User
 // @access  public
 router.post(
-  "/",
+  '/',
   // validasi inputan
   [
-    check("name", "Name is Required").not().isEmpty(),
-    check("email", "Pelase include a valid email").isEmail(),
+    check('name', 'Name is Required').not().isEmpty(),
+    check('email', 'Pelase include a valid email').isEmail(),
     check(
-      "password",
-      "Please enter a password with 6 or more characters"
+      'password',
+      'Please enter a password with 6 or more characters'
     ).isLength({ min: 6 }),
   ],
   async (req, res) => {
@@ -35,16 +36,16 @@ router.post(
       if (user) {
         return res
           .status(400)
-          .json({ errors: [{ msg: "User already exist" }] });
+          .json({ errors: [{ msg: 'User already exist' }] });
       }
       // mengambil gravatar user jika user belum ada
       const avatar = gravatar.url(email, {
         // s=size, ukuran foto
-        s: "200",
+        s: '200',
         // r=rating, kualitas foto
-        r: "pg",
+        r: 'pg',
         // d=default, jika foto error akan ditampilkan apa, jika mm maka foto kosong
-        d: "mm",
+        d: 'mm',
       });
       // membuat instansiasi object yang berisi request dari user diatas
       user = new User({
@@ -62,11 +63,26 @@ router.post(
       await user.save();
 
       // return JWT
-
-      res.send("User registered.");
+      const payload = {
+        user: {
+          id: user.id,
+        },
+      };
+      // par1(id.user) - par2(sign) - par3(expTime) - par4(callback)
+      jwt.sign(
+        payload,
+        config.get('jwtSecret'),
+        {
+          expiresIn: 360000,
+        },
+        (err, token) => {
+          if (err) throw err;
+          res.json({ token });
+        }
+      );
     } catch (err) {
       console.error(err.message);
-      res.status(500).send("Server error");
+      res.status(500).send('Server error');
     }
   }
 );
