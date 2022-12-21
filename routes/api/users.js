@@ -62,7 +62,7 @@ router.post(
       // menyimpan password di db
       await user.save();
 
-      // return JWT
+      // return JWT dengan membawa muatan id dari database
       const payload = {
         user: {
           id: user.id,
