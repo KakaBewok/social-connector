@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 // schema() berfungsi untuk membuat seperti apa kerangka/struktur data yang akan kita input ke dalam database
 const UserSchema = new mongoose.Schema({
@@ -24,4 +24,4 @@ const UserSchema = new mongoose.Schema({
   },
 });
 // mengkonversi schema() ke dalam model/blueprint
-module.exports = User = mongoose.model("user", UserSchema);
+module.exports = User = mongoose.model('user', UserSchema);

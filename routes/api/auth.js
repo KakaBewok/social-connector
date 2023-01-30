@@ -8,8 +8,8 @@ const bcrypt = require('bcryptjs');
 const { check, validationResult } = require('express-validator');
 
 // @route   GET api/auth
-// @desc    test route
-// @access  public
+// @desc    Get user data
+// @access  x-auth-token
 
 // auth = middleware dari folder middleware
 router.get('/', auth, async (req, res) => {
@@ -25,7 +25,7 @@ router.get('/', auth, async (req, res) => {
 
 // @route   POST api/auth
 // @desc    Authenticate user & get token
-// @access  public
+// @access  x-auth-token
 router.post(
   '/',
   // validasi inputan

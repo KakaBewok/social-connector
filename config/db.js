@@ -1,11 +1,11 @@
-const mongoose = require("mongoose");
-const config = require("config");
-const db = config.get("mongoURL");
+const mongoose = require('mongoose');
+const config = require('config');
+const db = config.get('mongoURL');
 
 const connectDB = async () => {
   try {
     await mongoose.connect(db);
-    console.log("MongoDB Connected...");
+    console.log('MongoDB Connected...');
   } catch (error) {
     console.error(err.message);
     // keluar dari proses dengan gagal

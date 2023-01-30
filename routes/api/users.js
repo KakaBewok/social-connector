@@ -23,22 +23,24 @@ router.post(
   ],
   async (req, res) => {
     const errors = validationResult(req);
+
+    // memeriksa hasil validasi
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
 
-    // ambil req body yang dikirimkan user
+    // ambil dengan cara destruct req body yang dikirimkan user
     const { name, email, password } = req.body;
 
     try {
-      // memeriksa apakah user sudah pernah daftar sebelumnya
+      // memeriksa apakah user sudah pernah daftar sebelumnya (gak bisa pake email yang sama)
       let user = await User.findOne({ email });
       if (user) {
         return res
           .status(400)
           .json({ errors: [{ msg: 'User already exist' }] });
       }
-      // mengambil gravatar user jika user belum ada
+      // mengambil gravatar user dari email user, jika user belum ada
       const avatar = gravatar.url(email, {
         // s=size, ukuran foto
         s: '200',
@@ -62,7 +64,7 @@ router.post(
       // menyimpan password di db
       await user.save();
 
-      // return JWT dengan membawa muatan id dari database
+      // membuat JWT dengan membawa muatan id dari database
       const payload = {
         user: {
           id: user.id,
