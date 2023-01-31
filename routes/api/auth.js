@@ -9,7 +9,7 @@ const { check, validationResult } = require('express-validator');
 
 // @route   GET api/auth
 // @desc    Get user data
-// @access  x-auth-token
+// @access  Private
 
 // auth = middleware dari folder middleware
 router.get('/', auth, async (req, res) => {
@@ -25,7 +25,7 @@ router.get('/', auth, async (req, res) => {
 
 // @route   POST api/auth
 // @desc    Authenticate user & get token
-// @access  x-auth-token
+// @access  Private
 router.post(
   '/',
   // validasi inputan
