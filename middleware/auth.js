@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const config = require('config');
 
-// sebelum login pake middleware ini dulu
+// berfungsi untuk cek body reqnya
 module.exports = function (req, res, next) {
   // dapatkan token dari header
   const token = req.header('x-auth-token');

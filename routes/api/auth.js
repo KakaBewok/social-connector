@@ -43,6 +43,7 @@ router.post(
     const { email, password } = req.body;
 
     try {
+      // CEK EMAILNYA
       // memeriksa apakah user sudah pernah daftar sebelumnya
       let user = await User.findOne({ email });
       if (!user) {
@@ -51,6 +52,7 @@ router.post(
           .json({ errors: [{ msg: 'Invalid Credentials' }] });
       }
 
+      // KALO EMAILNYA KETEMU, LANJUTKAN CEK PASSWORD
       // membandingkan password dari user dengan password  dari db
       const isMatch = await bcrypt.compare(password, user.password);
       if (!isMatch) {
