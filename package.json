@@ -12,6 +12,7 @@
   "author": "Noprizal",
   "license": "ISC",
   "dependencies": {
+    "@reduxjs/toolkit": "^1.9.3",
     "bcryptjs": "^2.4.3",
     "config": "^3.3.8",
     "express": "^4.18.2",

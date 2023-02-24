@@ -4,7 +4,8 @@ import { useSelector } from 'react-redux';
 // import { setAlert } from '../../actions/alert';
 
 const Alert = () => {
-  const alerts = useSelector((state) => state.alert);
+  // const alerts = useSelector((state) => state.alert);
+  const alerts = useSelector((state) => state.alertSlice);
   console.log(alerts);
 
   return (

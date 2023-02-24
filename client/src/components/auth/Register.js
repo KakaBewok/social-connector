@@ -1,8 +1,10 @@
 import React, { Fragment, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { setAlert } from '../../actions/alert';
 import Alert from '../layout/Alert';
+import { alertAction } from '../../redux/features/alert/alertAction';
+
+// import { alert } from '../../actions/alert';
 // import axios from 'axios';
 
 const Register = () => {
@@ -24,7 +26,7 @@ const Register = () => {
 
     // check the password
     if (password !== confirmPassword) {
-      dispatch(setAlert("Password don't match", 'danger', 4000));
+      dispatch(alertAction("Password don't match", 'danger', 4000));
     } else {
       console.log('SUCCESS');
     }

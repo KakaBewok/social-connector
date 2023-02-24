@@ -7,7 +7,10 @@ import Register from './components/auth/Register';
 import './App.css';
 // redux
 import { Provider } from 'react-redux';
-import store from './store';
+import { store } from './redux/store';
+
+// ini store versi Brad
+// import store from './store';
 
 const App = () => (
   <Provider store={store}>
