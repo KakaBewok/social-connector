@@ -1,4 +1,5 @@
-import React, { Fragment } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { Fragment, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
 import Landing from './components/layout/Landing';
@@ -8,21 +9,34 @@ import './App.css';
 // redux
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
+import { loadUserAction } from './redux/features/auth/authAction';
+import setAuthToken from './utils/setAuthToken';
 
 // ini store versi Brad
 // import store from './store';
 
-const App = () => (
-  <Provider store={store}>
-    <Fragment>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Landing />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
-      </Routes>
-    </Fragment>
-  </Provider>
-);
+if (localStorage.token) {
+  setAuthToken(localStorage.token);
+}
+
+const App = () => {
+  useEffect(() => {
+    // tidak menggunakan useDispatch karena sudah ada storenya langsung
+    store.dispatch(loadUserAction());
+  }, []);
+
+  return (
+    <Provider store={store}>
+      <Fragment>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+        </Routes>
+      </Fragment>
+    </Provider>
+  );
+};
 
 export default App;

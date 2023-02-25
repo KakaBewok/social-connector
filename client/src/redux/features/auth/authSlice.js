@@ -29,10 +29,28 @@ export const authSlice = createSlice({
         loading: false,
       };
     },
+    userLoaded: (state, action) => {
+      return {
+        ...state,
+        isAuthenticated: true,
+        loading: false,
+        user: action.payload,
+      };
+    },
+    authError: (state) => {
+      localStorage.removeItem('token');
+      return {
+        ...state,
+        token: null,
+        isAuthenticated: false,
+        loading: false,
+      };
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { registerSuccess, registerFailed } = authSlice.actions;
+export const { registerSuccess, registerFailed, userLoaded, authError } =
+  authSlice.actions;
 
 export default authSlice.reducer;
