@@ -1,8 +1,16 @@
 import React, { Fragment, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { loginAction } from '../../redux/features/auth/authAction';
+import Alert from '../layout/Alert';
+// import { alertAction } from '../../redux/features/alert/alertAction';
 // import axios from 'axios';
 
 const Login = () => {
+  const { isAuthenticated } = useSelector((state) => state.authSlice);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -14,12 +22,19 @@ const Login = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log('success');
+    dispatch(loginAction(email, password));
+    console.log(isAuthenticated);
   };
+
+  // Redirect if logged in
+  if (isAuthenticated) {
+    return navigate('/dashboard');
+  }
 
   return (
     <Fragment>
       <div className="container">
+        <Alert />
         <h1 className="large text-primary">Sign In</h1>
         <p className="lead">
           <i className="fas fa-user"></i> Sign Into Your Account
@@ -33,11 +48,8 @@ const Login = () => {
               name="email"
               value={email}
               onChange={(e) => onChange(e)}
+              required
             />
-            <small className="form-text">
-              This site uses Gravatar so if you want a profile image, use a
-              Gravatar email
-            </small>
           </div>
           {/* password */}
           <div className="form-group">

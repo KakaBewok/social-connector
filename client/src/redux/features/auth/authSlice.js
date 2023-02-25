@@ -29,6 +29,24 @@ export const authSlice = createSlice({
         loading: false,
       };
     },
+    loginSuccess: (state, action) => {
+      localStorage.setItem('token', action.payload.token);
+      return {
+        ...state,
+        ...action.payload,
+        isAuthenticated: true,
+        loading: false,
+      };
+    },
+    loginFailed: (state) => {
+      localStorage.removeItem('token');
+      return {
+        ...state,
+        token: null,
+        isAuthenticated: false,
+        loading: false,
+      };
+    },
     userLoaded: (state, action) => {
       return {
         ...state,
@@ -50,7 +68,13 @@ export const authSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { registerSuccess, registerFailed, userLoaded, authError } =
-  authSlice.actions;
+export const {
+  registerSuccess,
+  registerFailed,
+  loginSuccess,
+  loginFailed,
+  userLoaded,
+  authError,
+} = authSlice.actions;
 
 export default authSlice.reducer;
