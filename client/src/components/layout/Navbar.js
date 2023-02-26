@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logoutAction } from '../../redux/features/auth/authAction';
 import { FiLogOut } from 'react-icons/fi';
+import { FaUserAlt } from 'react-icons/fa';
 
 const Navbar = () => {
   const { isAuthenticated, loading } = useSelector((state) => state.authSlice);
@@ -16,6 +17,12 @@ const Navbar = () => {
 
   const authLinks = (
     <ul>
+      <li>
+        <Link to="/dashboard">
+          <FaUserAlt style={{ marginRight: '7px' }} />
+          <span className="hide-sm">Dashboard</span>
+        </Link>
+      </li>
       <li>
         <a onClick={logoutHandler} href="#!">
           <FiLogOut /> <span className="hide-sm">Logout</span>

@@ -1,7 +1,5 @@
 import axios from 'axios';
-// import { alertAction } from '../alert/alertAction';
 import { getProfile, profileError } from './profileSlice';
-// import setAuthToken from '../../../utils/setAuthToken';
 
 // Get current users profile
 export const getCurrentProfileAction = () => async (dispatch) => {
@@ -9,6 +7,7 @@ export const getCurrentProfileAction = () => async (dispatch) => {
     const url = '/api/profile/me';
     const res = await axios.get(url);
 
+    // res.data isinya data profile yang login
     dispatch(getProfile(res.data));
   } catch (err) {
     dispatch(

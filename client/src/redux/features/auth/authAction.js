@@ -8,6 +8,7 @@ import {
   userLoaded,
   authError,
 } from './authSlice';
+import { clearProfile } from '../profile/profileSlice';
 import { alertAction } from '../alert/alertAction';
 import setAuthToken from '../../../utils/setAuthToken';
 
@@ -70,6 +71,7 @@ export const loginAction = (email, password) => async (dispatch) => {
 
 // Logout user / Clear profile
 export const logoutAction = () => (dispatch) => {
+  dispatch(clearProfile());
   dispatch(logout());
 };
 

@@ -26,10 +26,18 @@ export const profileSlice = createSlice({
         loading: false,
       };
     },
+    clearProfile: (state) => {
+      return {
+        ...state,
+        profile: null,
+        repos: [],
+        loading: false,
+      };
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { getProfile, profileError } = profileSlice.actions;
+export const { getProfile, profileError, clearProfile } = profileSlice.actions;
 
 export default profileSlice.reducer;

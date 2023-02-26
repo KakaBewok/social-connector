@@ -1,7 +1,19 @@
-import React from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const Landing = () => {
+  const { isAuthenticated } = useSelector((state) => state.authSlice);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      return navigate('/dashboard');
+    }
+  }, []);
+
   return (
     <section className="landing">
       <div className="dark-overlay">
