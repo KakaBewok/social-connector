@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { Fragment, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -24,7 +25,6 @@ const Login = () => {
     e.preventDefault();
     dispatch(loginAction(email, password));
   };
-
   // Redirect if logged in
   if (isAuthenticated) {
     return navigate('/dashboard');

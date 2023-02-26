@@ -36,13 +36,7 @@ const Register = () => {
     }
   };
 
-  // useEffect(() => {
-  //   Redirect if registered
-  //   if (isAuthenticated) {
-  //     return navigate('/login');
-  //   }
-  // }, []);
-
+  // Redirect if registered
   if (isAuthenticated) {
     return navigate('/login');
   }
