@@ -23,7 +23,6 @@ const Login = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     dispatch(loginAction(email, password));
-    console.log(isAuthenticated);
   };
 
   // Redirect if logged in

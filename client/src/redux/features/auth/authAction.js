@@ -4,6 +4,7 @@ import {
   registerFailed,
   loginSuccess,
   loginFailed,
+  logout,
   userLoaded,
   authError,
 } from './authSlice';
@@ -65,6 +66,11 @@ export const loginAction = (email, password) => async (dispatch) => {
 
     dispatch(loginFailed());
   }
+};
+
+// Logout user / Clear profile
+export const logoutAction = () => (dispatch) => {
+  dispatch(logout());
 };
 
 // Load User

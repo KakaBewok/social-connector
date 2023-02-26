@@ -47,6 +47,15 @@ export const authSlice = createSlice({
         loading: false,
       };
     },
+    logout: (state) => {
+      localStorage.removeItem('token');
+      return {
+        ...state,
+        token: null,
+        isAuthenticated: false,
+        loading: false,
+      };
+    },
     userLoaded: (state, action) => {
       return {
         ...state,
@@ -73,6 +82,7 @@ export const {
   registerFailed,
   loginSuccess,
   loginFailed,
+  logout,
   userLoaded,
   authError,
 } = authSlice.actions;

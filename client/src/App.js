@@ -5,15 +5,14 @@ import Navbar from './components/layout/Navbar';
 import Landing from './components/layout/Landing';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
+import Dashboard from './components/dashboard/Dashboard';
+import PrivateRoute from './components/routing/privateRoute';
 import './App.css';
 // redux
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
 import { loadUserAction } from './redux/features/auth/authAction';
 import setAuthToken from './utils/setAuthToken';
-
-// ini store versi Brad
-// import store from './store';
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -33,6 +32,14 @@ const App = () => {
           <Route path="/" element={<Landing />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route
+            path="/dashboard"
+            element={
+              <PrivateRoute>
+                <Dashboard />
+              </PrivateRoute>
+            }
+          />
         </Routes>
       </Fragment>
     </Provider>
