@@ -4,8 +4,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginAction } from '../../redux/features/auth/authAction';
 import Alert from '../layout/Alert';
-// import { alertAction } from '../../redux/features/alert/alertAction';
-// import axios from 'axios';
 
 const Login = () => {
   const { isAuthenticated } = useSelector((state) => state.authSlice);
