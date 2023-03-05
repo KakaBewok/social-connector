@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { getProfile, profileError } from './profileSlice';
-// import { setAlert } from '../alert/alertSlice';
 import { alertAction } from '../alert/alertAction';
+import { updateProfile } from './profileSlice';
 
 // Get current users profile
 export const getCurrentProfileAction = () => async (dispatch) => {
@@ -24,9 +24,7 @@ export const getCurrentProfileAction = () => async (dispatch) => {
 // Create or update profile
 export const createProfileAction =
   (formData, navigate, edit = false) =>
-  // const navigate = useNavigate();
   async (dispatch) => {
-    // const navigate = useNavigate();
     try {
       const config = {
         headers: {
@@ -63,3 +61,69 @@ export const createProfileAction =
       );
     }
   };
+
+// Profile update (experience)
+export const addExperienceAction = (formData, navigate) => async (dispatch) => {
+  try {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+    const url = '/api/profile/experience';
+    const res = await axios.put(url, formData, config);
+
+    dispatch(updateProfile(res.data));
+
+    dispatch(alertAction('Experience Added', 'success'));
+
+    navigate('/dashboard');
+  } catch (err) {
+    const errors = err.response.data.errors;
+
+    //   jika error karena validasi from
+    if (errors) {
+      errors.forEach((error) => dispatch(alertAction(error.msg, 'danger')));
+    }
+
+    dispatch(
+      profileError({
+        msg: err.response.statusText,
+        status: err.response.status,
+      })
+    );
+  }
+};
+
+// Profile update (education)
+export const addEducationAction = (formData, navigate) => async (dispatch) => {
+  try {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+    const url = '/api/profile/education';
+    const res = await axios.put(url, formData, config);
+
+    dispatch(updateProfile(res.data));
+
+    dispatch(alertAction('Education Added', 'success'));
+
+    navigate('/dashboard');
+  } catch (err) {
+    const errors = err.response.data.errors;
+
+    //   jika error karena validasi from
+    if (errors) {
+      errors.forEach((error) => dispatch(alertAction(error.msg, 'danger')));
+    }
+
+    dispatch(
+      profileError({
+        msg: err.response.statusText,
+        status: err.response.status,
+      })
+    );
+  }
+};

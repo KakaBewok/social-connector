@@ -26,6 +26,14 @@ export const profileSlice = createSlice({
         loading: false,
       };
     },
+    // update experience and education
+    updateProfile: (state, action) => {
+      return {
+        ...state,
+        profile: action.payload,
+        loading: false,
+      };
+    },
     clearProfile: (state) => {
       return {
         ...state,
@@ -38,6 +46,7 @@ export const profileSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { getProfile, profileError, clearProfile } = profileSlice.actions;
+export const { getProfile, profileError, clearProfile, updateProfile } =
+  profileSlice.actions;
 
 export default profileSlice.reducer;
