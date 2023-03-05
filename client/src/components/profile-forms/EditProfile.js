@@ -1,15 +1,41 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-restricted-globals */
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { createProfileAction } from '../../redux/features/profile/profileAction';
+// createProfileAction bisa digunakan juga untuk edit
+import {
+  createProfileAction,
+  getCurrentProfileAction,
+} from '../../redux/features/profile/profileAction';
 import Alert from '../layout/Alert';
 import { useNavigate } from 'react-router-dom';
 
-const CreateProfile = () => {
+const EditProfile = () => {
+  const { profile, loading } = useSelector((state) => state.profileSlice);
   const navigate = useNavigate();
-
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getCurrentProfileAction());
+
+    setFormData({
+      company: loading || !profile.company ? '' : profile.company,
+      website: loading || !profile.website ? '' : profile.website,
+      location: loading || !profile.location ? '' : profile.location,
+      status: loading || !profile.status ? '' : profile.status,
+      skills: loading || !profile.skills ? '' : profile.skills.join(','),
+      githubusername:
+        loading || !profile.githubusername ? '' : profile.githubusername,
+      bio: loading || !profile.bio ? '' : profile.bio,
+      twitter: loading || !profile.social ? '' : profile.social.twitter,
+      facebook: loading || !profile.social ? '' : profile.social.facebook,
+      linkedin: loading || !profile.social ? '' : profile.social.linkedin,
+      youtube: loading || !profile.social ? '' : profile.social.youtube,
+      instagram: loading || !profile.social ? '' : profile.social.instagram,
+    });
+  }, [loading]);
+
   const [formData, setFormData] = useState({
     company: '',
     website: '',
@@ -48,14 +74,14 @@ const CreateProfile = () => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    dispatch(createProfileAction(formData, navigate));
+    dispatch(createProfileAction(formData, navigate, true));
   };
 
   return (
     <>
       <section className="container">
         <Alert />
-        <h1 className="large text-primary">Create Your Profile</h1>
+        <h1 className="large text-primary">Edit Your Profile</h1>
         <p className="lead">
           <i className="fas fa-user"></i> Let's get some information to make
           your profile stand out
@@ -204,11 +230,11 @@ const CreateProfile = () => {
                   width="32"
                   height="32"
                   viewBox="0 0 24 24"
-                  stroke-width="1.5"
+                  strokeWidth="1.5"
                   stroke="#00abfb"
                   fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 >
                   <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                   <path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3" />
@@ -230,11 +256,11 @@ const CreateProfile = () => {
                   width="32"
                   height="32"
                   viewBox="0 0 24 24"
-                  stroke-width="1.5"
+                  strokeWidth="1.5"
                   stroke="#fd0061"
                   fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 >
                   <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                   <rect x="3" y="5" width="18" height="14" rx="4" />
@@ -257,11 +283,11 @@ const CreateProfile = () => {
                   width="32"
                   height="32"
                   viewBox="0 0 24 24"
-                  stroke-width="1.5"
+                  strokeWidth="1.5"
                   stroke="#00abfb"
                   fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 >
                   <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                   <rect x="4" y="4" width="16" height="16" rx="2" />
@@ -287,11 +313,11 @@ const CreateProfile = () => {
                   width="32"
                   height="32"
                   viewBox="0 0 24 24"
-                  stroke-width="1.5"
+                  strokeWidth="1.5"
                   stroke="#fd0061"
                   fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 >
                   <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                   <rect x="4" y="4" width="16" height="16" rx="4" />
@@ -321,4 +347,4 @@ const CreateProfile = () => {
   );
 };
 
-export default CreateProfile;
+export default EditProfile;

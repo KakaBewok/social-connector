@@ -16,42 +16,51 @@ const Navbar = () => {
   };
 
   const authLinks = (
-    <ul>
-      <li>
+    <>
+      <h1>
         <Link to="/dashboard">
-          <FaUserAlt style={{ marginRight: '7px' }} />
-          <span className="hide-sm">Dashboard</span>
+          <i className="fas fa-code"></i> DevConnector
         </Link>
-      </li>
-      <li>
-        <a onClick={logoutHandler} href="#!">
-          <FiLogOut /> <span className="hide-sm">Logout</span>
-        </a>
-      </li>
-    </ul>
+      </h1>
+      <ul>
+        <li>
+          <Link to="/dashboard">
+            <FaUserAlt style={{ marginRight: '7px' }} />
+            <span className="hide-sm">Dashboard</span>
+          </Link>
+        </li>
+        <li>
+          <a onClick={logoutHandler} href="#!">
+            <FiLogOut /> <span className="hide-sm">Logout</span>
+          </a>
+        </li>
+      </ul>
+    </>
   );
 
   const guestLinks = (
-    <ul>
-      <li>
-        <a href="#!">Developers</a>
-      </li>
-      <li>
-        <Link to="/register">Register</Link>
-      </li>
-      <li>
-        <Link to="/login">Login</Link>
-      </li>
-    </ul>
-  );
-
-  return (
-    <nav className="navbar bg-dark">
+    <>
       <h1>
         <Link to="/">
           <i className="fas fa-code"></i> DevConnector
         </Link>
       </h1>
+      <ul>
+        <li>
+          <a href="#!">Developers</a>
+        </li>
+        <li>
+          <Link to="/register">Register</Link>
+        </li>
+        <li>
+          <Link to="/login">Login</Link>
+        </li>
+      </ul>
+    </>
+  );
+
+  return (
+    <nav className="navbar bg-dark">
       {!loading && <>{isAuthenticated ? authLinks : guestLinks}</>}
     </nav>
   );

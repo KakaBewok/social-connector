@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Spinner from '../layout/Spinner';
 import { FaUserAlt } from 'react-icons/fa';
+import DashboardAction from './DashboardAction';
+import Alert from '../layout/Alert';
 
 const Dashboard = () => {
   const { profile, loading } = useSelector((state) => state.profileSlice);
@@ -29,7 +31,10 @@ const Dashboard = () => {
               Welcome {user && user.name}
             </p>
             {profile !== null ? (
-              <>Has</>
+              <>
+                <Alert />
+                <DashboardAction />
+              </>
             ) : (
               <>
                 <p>You have not yet setup a profile, please add some info</p>

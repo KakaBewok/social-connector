@@ -4,9 +4,10 @@ import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
 import Landing from './components/layout/Landing';
 import Login from './components/auth/Login';
-import createProfile from './components/profile-forms/createProfile';
 import Register from './components/auth/Register';
 import Dashboard from './components/dashboard/Dashboard';
+import CreateProfile from './components/profile-forms/CreateProfile';
+import EditProfile from './components/profile-forms/EditProfile';
 import PrivateRoute from './components/routing/privateRoute';
 import './App.css';
 // redux
@@ -14,7 +15,6 @@ import { Provider } from 'react-redux';
 import { store } from './redux/store';
 import { loadUserAction } from './redux/features/auth/authAction';
 import setAuthToken from './utils/setAuthToken';
-import CreateProfile from './components/profile-forms/createProfile';
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -47,6 +47,14 @@ const App = () => {
             element={
               <PrivateRoute>
                 <CreateProfile />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/edit-profile"
+            element={
+              <PrivateRoute>
+                <EditProfile />
               </PrivateRoute>
             }
           />

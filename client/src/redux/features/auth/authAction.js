@@ -14,7 +14,7 @@ import setAuthToken from '../../../utils/setAuthToken';
 
 // Register User
 export const registerAction =
-  ({ name, email, password }) =>
+  ({ name, email, password }, navigate) =>
   async (dispatch) => {
     const url = '/api/users';
     const config = {
@@ -28,6 +28,7 @@ export const registerAction =
       const res = await axios.post(url, body, config);
       //   res.data berupa token
       dispatch(registerSuccess(res.data));
+      navigate('/login');
     } catch (err) {
       const errors = err.response.data.errors;
 
