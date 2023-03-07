@@ -1,13 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
 import { getCurrentProfileAction } from '../../redux/features/profile/profileAction';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Spinner from '../layout/Spinner';
 import { FaUserAlt } from 'react-icons/fa';
 import DashboardAction from './DashboardAction';
+import Experience from './Experience';
+import Education from './Education';
 import Alert from '../layout/Alert';
+import { FaUserMinus } from 'react-icons/fa';
+import { deleteAccountAction } from '../../redux/features/profile/profileAction';
 
 const Dashboard = () => {
   const { profile, loading } = useSelector((state) => state.profileSlice);
@@ -34,6 +37,20 @@ const Dashboard = () => {
               <>
                 <Alert />
                 <DashboardAction />
+                <Experience experience={profile.experience} />
+                <Education education={profile.education} />
+
+                <div className="my-2">
+                  <button
+                    className="btn btn-danger"
+                    onClick={() => dispatch(deleteAccountAction())}
+                  >
+                    <FaUserMinus
+                      style={{ marginRight: '7px', marginTop: '2px' }}
+                    />
+                    DELETE MY ACCOUNT
+                  </button>
+                </div>
               </>
             ) : (
               <>

@@ -81,6 +81,7 @@ const AddExperience = () => {
               name="from"
               value={from}
               onChange={(e) => onChange(e)}
+              required
             />
           </div>
           {/* current job */}

@@ -72,6 +72,15 @@ export const authSlice = createSlice({
         loading: false,
       };
     },
+    accountDeleted: (state) => {
+      localStorage.removeItem('token');
+      return {
+        ...state,
+        token: null,
+        isAuthenticated: false,
+        loading: false,
+      };
+    },
   },
 });
 
@@ -84,6 +93,7 @@ export const {
   logout,
   userLoaded,
   authError,
+  accountDeleted,
 } = authSlice.actions;
 
 export default authSlice.reducer;

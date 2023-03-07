@@ -1,7 +1,9 @@
+/* eslint-disable no-unused-vars */
 import axios from 'axios';
 import { getProfile, profileError } from './profileSlice';
 import { alertAction } from '../alert/alertAction';
-import { updateProfile } from './profileSlice';
+import { updateProfile, clearProfile } from './profileSlice';
+import { accountDeleted } from '../auth/authSlice';
 
 // Get current users profile
 export const getCurrentProfileAction = () => async (dispatch) => {
@@ -125,5 +127,79 @@ export const addEducationAction = (formData, navigate) => async (dispatch) => {
         status: err.response.status,
       })
     );
+  }
+};
+
+// Delete experience
+export const deleteExperienceAction = (id) => async (dispatch) => {
+  try {
+    const url = `/api/profile/experience/${id}`;
+    const res = await axios.delete(url);
+
+    dispatch(updateProfile(res.data));
+
+    dispatch(alertAction('Delete Success', 'success'));
+  } catch (err) {
+    const errors = err.response.data.errors;
+
+    //   jika error karena validasi from
+    if (errors) {
+      errors.forEach((error) => dispatch(alertAction(error.msg, 'danger')));
+    }
+
+    dispatch(
+      profileError({
+        msg: err.response.statusText,
+        status: err.response.status,
+      })
+    );
+  }
+};
+
+// Delete education
+export const deleteEducationAction = (id) => async (dispatch) => {
+  try {
+    const url = `/api/profile/education/${id}`;
+    const res = await axios.delete(url);
+
+    dispatch(updateProfile(res.data));
+
+    dispatch(alertAction('Delete Success', 'success'));
+  } catch (err) {
+    const errors = err.response.data.errors;
+
+    //   jika error karena validasi from
+    if (errors) {
+      errors.forEach((error) => dispatch(alertAction(error.msg, 'danger')));
+    }
+
+    dispatch(
+      profileError({
+        msg: err.response.statusText,
+        status: err.response.status,
+      })
+    );
+  }
+};
+
+// Delete account & profile
+export const deleteAccountAction = () => async (dispatch) => {
+  if (window.confirm("Are you sure? This can't be undone! ")) {
+    try {
+      const url = `/api/profile`;
+      const res = await axios.delete(url);
+
+      dispatch(clearProfile());
+      dispatch(accountDeleted());
+
+      dispatch(alertAction('Your account has been deleted'));
+    } catch (err) {
+      dispatch(
+        profileError({
+          msg: err.response.statusText,
+          status: err.response.status,
+        })
+      );
+    }
   }
 };
