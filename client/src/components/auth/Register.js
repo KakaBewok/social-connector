@@ -1,12 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { Fragment, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Alert from '../layout/Alert';
 import { alertAction } from '../../redux/features/alert/alertAction';
 import { registerAction } from '../../redux/features/auth/authAction';
 
 const Register = () => {
+  const { isAuthenticated } = useSelector((state) => state.authSlice);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -31,6 +32,11 @@ const Register = () => {
       dispatch(registerAction({ name, email, password }, navigate));
     }
   };
+
+  // Redirect if logged in
+  if (isAuthenticated) {
+    return navigate('/dashboard');
+  }
 
   return (
     <Fragment>
