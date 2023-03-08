@@ -30,7 +30,8 @@ const ProfileItem = ({ profile }) => {
           <li>
             {skills.length > 4 ? (
               <>
-                <Link to={`/profile/${_id}`}>. . . . .</Link>
+                <AiOutlineCheck className="text-primary" />
+                <Link to={`/profile/${_id}`}> . . . . .</Link>
               </>
             ) : (
               ''

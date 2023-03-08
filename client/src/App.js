@@ -10,6 +10,7 @@ import CreateProfile from './components/profile-forms/CreateProfile';
 import EditProfile from './components/profile-forms/EditProfile';
 import AddExperience from './components/profile-forms/AddExperience';
 import AddEducation from './components/profile-forms/AddEducation';
+import Profile from './components/profile/Profile';
 import Profiles from './components/profiles/Profiles';
 import PrivateRoute from './components/routing/privateRoute';
 import './App.css';
@@ -38,6 +39,7 @@ const App = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/profiles" element={<Profiles />} />
+          <Route path="/profile/:_id" element={<Profile />} />
           <Route
             path="/dashboard"
             element={
