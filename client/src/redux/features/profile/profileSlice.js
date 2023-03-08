@@ -19,6 +19,20 @@ export const profileSlice = createSlice({
         loading: false,
       };
     },
+    getProfiles: (state, action) => {
+      return {
+        ...state,
+        profiles: action.payload,
+        loading: false,
+      };
+    },
+    getRepos: (state, action) => {
+      return {
+        ...state,
+        repos: action.payload,
+        loading: false,
+      };
+    },
     profileError: (state, action) => {
       return {
         ...state,
@@ -46,7 +60,13 @@ export const profileSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { getProfile, profileError, clearProfile, updateProfile } =
-  profileSlice.actions;
+export const {
+  getProfile,
+  getProfiles,
+  getRepos,
+  profileError,
+  clearProfile,
+  updateProfile,
+} = profileSlice.actions;
 
 export default profileSlice.reducer;

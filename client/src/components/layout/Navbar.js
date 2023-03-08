@@ -24,6 +24,9 @@ const Navbar = () => {
       </h1>
       <ul>
         <li>
+          <Link to="/profiles">Developers</Link>
+        </li>
+        <li>
           <Link to="/dashboard">
             <FaUserAlt style={{ marginRight: '7px' }} />
             <span className="hide-sm">Dashboard</span>
@@ -47,7 +50,7 @@ const Navbar = () => {
       </h1>
       <ul>
         <li>
-          <a href="#!">Developers</a>
+          <Link to="/profiles">Developers</Link>
         </li>
         <li>
           <Link to="/register">Register</Link>

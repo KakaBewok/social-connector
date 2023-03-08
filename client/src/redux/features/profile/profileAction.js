@@ -1,6 +1,11 @@
 /* eslint-disable no-unused-vars */
 import axios from 'axios';
-import { getProfile, profileError } from './profileSlice';
+import {
+  getProfile,
+  getProfiles,
+  getRepos,
+  profileError,
+} from './profileSlice';
 import { alertAction } from '../alert/alertAction';
 import { updateProfile, clearProfile } from './profileSlice';
 import { accountDeleted } from '../auth/authSlice';
@@ -13,6 +18,59 @@ export const getCurrentProfileAction = () => async (dispatch) => {
 
     // res.data isinya data profile yang login
     dispatch(getProfile(res.data));
+  } catch (err) {
+    dispatch(
+      profileError({
+        msg: err.response.statusText,
+        status: err.response.status,
+      })
+    );
+  }
+};
+
+// Get all profiles
+export const getProfilesAction = () => async (dispatch) => {
+  dispatch(clearProfile);
+  try {
+    const url = '/api/profile';
+    const res = await axios.get(url);
+
+    // res.data isinya semua data profile
+    dispatch(getProfiles(res.data));
+  } catch (err) {
+    dispatch(
+      profileError({
+        msg: err.response.statusText,
+        status: err.response.status,
+      })
+    );
+  }
+};
+
+// Get profile by ID
+export const getProfileByIDAction = (userID) => async (dispatch) => {
+  try {
+    const url = `/api/profile/user/${userID}`;
+    const res = await axios.get(url);
+
+    dispatch(getProfile(res.data));
+  } catch (err) {
+    dispatch(
+      profileError({
+        msg: err.response.statusText,
+        status: err.response.status,
+      })
+    );
+  }
+};
+
+// Get github repos
+export const getGithubReposAction = (githubUsername) => async (dispatch) => {
+  try {
+    const url = `/api/profile/github/${githubUsername}`;
+    const res = await axios.get(url);
+
+    dispatch(getRepos(res.data));
   } catch (err) {
     dispatch(
       profileError({
