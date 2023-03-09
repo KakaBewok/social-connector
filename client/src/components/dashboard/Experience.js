@@ -6,7 +6,7 @@ import { deleteExperienceAction } from '../../redux/features/profile/profileActi
 const Experience = ({ experience }) => {
   const dispatch = useDispatch();
   const experiences = experience.map((exp) => (
-    <tr key={exp.id}>
+    <tr key={exp._id}>
       <td>{exp.company}</td>
       <td className="hide-sm">{exp.title}</td>
       <td className="hide-sm">
@@ -20,7 +20,7 @@ const Experience = ({ experience }) => {
       <td>
         <button
           className="btn btn-danger"
-          onClick={() => dispatch(deleteExperienceAction(exp.id))}
+          onClick={() => dispatch(deleteExperienceAction(exp._id))}
         >
           Delete
         </button>

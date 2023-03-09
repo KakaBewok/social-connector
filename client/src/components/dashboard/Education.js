@@ -6,7 +6,7 @@ import { deleteEducationAction } from '../../redux/features/profile/profileActio
 const Education = ({ education }) => {
   const dispatch = useDispatch();
   const Educations = education.map((edu) => (
-    <tr key={edu.id}>
+    <tr key={edu._id}>
       <td>{edu.school}</td>
       <td className="hide-sm">{edu.degree}</td>
       <td className="hide-sm">
@@ -20,7 +20,7 @@ const Education = ({ education }) => {
       <td>
         <button
           className="btn btn-danger"
-          onClick={() => dispatch(deleteEducationAction(edu.id))}
+          onClick={() => dispatch(deleteEducationAction(edu._id))}
         >
           Delete
         </button>

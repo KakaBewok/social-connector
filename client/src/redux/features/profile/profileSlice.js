@@ -38,6 +38,7 @@ export const profileSlice = createSlice({
         ...state,
         error: action.payload,
         loading: false,
+        profile: null,
       };
     },
     // update experience and education

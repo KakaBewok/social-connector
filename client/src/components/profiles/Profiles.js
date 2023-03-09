@@ -34,7 +34,7 @@ const Profiles = () => {
               {profiles.length > 0 ? (
                 <>
                   {profiles.map((profile) => (
-                    <ProfileItem key={profile.id} profile={profile} />
+                    <ProfileItem key={profile._id} profile={profile} />
                   ))}
                 </>
               ) : (

@@ -27,15 +27,15 @@ const ProfileTop = ({ profile }) => {
           <a href={website} target="_blank" rel="noopener noreferrer">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              class="icon icon-tabler icon-tabler-brand-chrome"
+              className="icon icon-tabler icon-tabler-brand-chrome"
               width="32"
               height="32"
               viewBox="0 0 24 24"
-              stroke-width="1.5"
+              strokeWidth="1.5"
               stroke="#00abfb"
               fill="none"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             >
               <path stroke="none" d="M0 0h24v24H0z" fill="none" />
               <circle cx="12" cy="12" r="9" />
@@ -62,7 +62,7 @@ const ProfileTop = ({ profile }) => {
           <a href={social.twitter} target="_blank" rel="noopener noreferrer">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              class="icon icon-tabler icon-tabler-brand-twitter"
+              className="icon icon-tabler icon-tabler-brand-twitter"
               width="32"
               height="32"
               viewBox="0 0 24 24"
@@ -81,15 +81,15 @@ const ProfileTop = ({ profile }) => {
           <a href={social.facebook} target="_blank" rel="noopener noreferrer">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              class="icon icon-tabler icon-tabler-brand-facebook"
+              className="icon icon-tabler icon-tabler-brand-facebook"
               width="32"
               height="32"
               viewBox="0 0 24 24"
-              stroke-width="1.5"
+              strokeWidth="1.5"
               stroke="#00abfb"
               fill="none"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             >
               <path stroke="none" d="M0 0h24v24H0z" fill="none" />
               <path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3" />
@@ -100,15 +100,15 @@ const ProfileTop = ({ profile }) => {
           <a href={social.linkedin} target="_blank" rel="noopener noreferrer">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              class="icon icon-tabler icon-tabler-brand-linkedin"
+              className="icon icon-tabler icon-tabler-brand-linkedin"
               width="32"
               height="32"
               viewBox="0 0 24 24"
-              stroke-width="1.5"
+              strokeWidth="1.5"
               stroke="#00abfb"
               fill="none"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             >
               <path stroke="none" d="M0 0h24v24H0z" fill="none" />
               <rect x="4" y="4" width="16" height="16" rx="2" />
@@ -123,15 +123,15 @@ const ProfileTop = ({ profile }) => {
           <a href={social.youtube} target="_blank" rel="noopener noreferrer">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              class="icon icon-tabler icon-tabler-brand-youtube"
+              className="icon icon-tabler icon-tabler-brand-youtube"
               width="32"
               height="32"
               viewBox="0 0 24 24"
-              stroke-width="1.5"
+              strokeWidth="1.5"
               stroke="#fd0061"
               fill="none"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             >
               <path stroke="none" d="M0 0h24v24H0z" fill="none" />
               <rect x="3" y="5" width="18" height="14" rx="4" />
@@ -143,15 +143,15 @@ const ProfileTop = ({ profile }) => {
           <a href={social.instagram} target="_blank" rel="noopener noreferrer">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              class="icon icon-tabler icon-tabler-brand-instagram"
+              className="icon icon-tabler icon-tabler-brand-instagram"
               width="32"
               height="32"
               viewBox="0 0 24 24"
-              stroke-width="1.5"
+              strokeWidth="1.5"
               stroke="#fd0061"
               fill="none"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             >
               <path stroke="none" d="M0 0h24v24H0z" fill="none" />
               <rect x="4" y="4" width="16" height="16" rx="4" />

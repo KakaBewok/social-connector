@@ -5,9 +5,10 @@ import {
   getProfiles,
   getRepos,
   profileError,
+  updateProfile,
+  clearProfile,
 } from './profileSlice';
 import { alertAction } from '../alert/alertAction';
-import { updateProfile, clearProfile } from './profileSlice';
 import { accountDeleted } from '../auth/authSlice';
 
 // Get current users profile
@@ -19,6 +20,9 @@ export const getCurrentProfileAction = () => async (dispatch) => {
     // res.data isinya data profile yang login
     dispatch(getProfile(res.data));
   } catch (err) {
+    // jika user baru belum ada profile, maka akan menghapus profile yang lama distate
+    dispatch(profileError());
+
     dispatch(
       profileError({
         msg: err.response.statusText,
