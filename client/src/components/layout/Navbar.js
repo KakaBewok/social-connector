@@ -27,6 +27,9 @@ const Navbar = () => {
           <Link to="/profiles">Developers</Link>
         </li>
         <li>
+          <Link to="/posts">Posts</Link>
+        </li>
+        <li>
           <Link to="/dashboard">
             <FaUserAlt style={{ marginRight: '7px' }} />
             <span className="hide-sm">Dashboard</span>
