@@ -25,10 +25,29 @@ export const postSlice = createSlice({
         loading: false,
       };
     },
+    updateLikes: (state, action) => {
+      const { payload } = action;
+      return {
+        ...state,
+        posts: state.posts.map((post) =>
+          post._id === payload.postId ? { ...post, likes: payload.likes } : post
+        ),
+        loading: false,
+      };
+    },
+    deletePost: (state, action) => {
+      const { payload } = action;
+      return {
+        ...state,
+        posts: state.posts.filter((post) => post._id !== payload),
+        loading: false,
+      };
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { getPosts, postError } = postSlice.actions;
+export const { getPosts, postError, updateLikes, deletePost } =
+  postSlice.actions;
 
 export default postSlice.reducer;

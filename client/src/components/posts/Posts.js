@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getPostsAction } from '../../redux/features/post/postAction';
 import Spinner from '../layout/Spinner';
 import PostItem from './PostItem.js';
+import Alert from '../layout/Alert';
 
 const Posts = () => {
   const dispatch = useDispatch();
@@ -20,6 +21,7 @@ const Posts = () => {
   ) : (
     <>
       <div className="container">
+        <Alert />
         <h1 className="large text-primary">Posts</h1>
         <p className="lead">Welcome to the community</p>
         {/* Post Form */}
