@@ -18,6 +18,13 @@ export const postSlice = createSlice({
         loading: false,
       };
     },
+    getPost: (state, action) => {
+      return {
+        ...state,
+        post: action.payload,
+        loading: false,
+      };
+    },
     postError: (state, action) => {
       return {
         ...state,
@@ -51,11 +58,40 @@ export const postSlice = createSlice({
         loading: false,
       };
     },
+    addComment: (state, action) => {
+      const { payload } = action;
+      return {
+        ...state,
+        post: { ...state.post, comments: payload },
+        loading: false,
+      };
+    },
+    deleteComment: (state, action) => {
+      const { payload } = action;
+      return {
+        ...state,
+        post: {
+          ...state.post,
+          comments: state.post.comments.filter(
+            (comment) => comment._id !== payload
+          ),
+        },
+        loading: false,
+      };
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { getPosts, postError, updateLikes, deletePost, addPost } =
-  postSlice.actions;
+export const {
+  getPosts,
+  getPost,
+  postError,
+  updateLikes,
+  deletePost,
+  addPost,
+  addComment,
+  deleteComment,
+} = postSlice.actions;
 
 export default postSlice.reducer;

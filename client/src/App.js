@@ -13,6 +13,7 @@ import AddEducation from './components/profile-forms/AddEducation';
 import Profile from './components/profile/Profile';
 import Profiles from './components/profiles/Profiles';
 import Posts from './components/posts/Posts';
+import Post from './components/post/Post';
 import PrivateRoute from './components/routing/privateRoute';
 import './App.css';
 // redux
@@ -86,6 +87,14 @@ const App = () => {
             element={
               <PrivateRoute>
                 <Posts />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/post/:postId"
+            element={
+              <PrivateRoute>
+                <Post />
               </PrivateRoute>
             }
           />

@@ -1,3 +1,4 @@
+/* eslint-disable no-unreachable */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react';
 import { Link } from 'react-router-dom';
@@ -10,7 +11,7 @@ import {
 } from '../../redux/features/post/postAction';
 import { FcLike } from 'react-icons/fc';
 
-const PostItem = ({ post }) => {
+const PostItem = ({ post, showAction }) => {
   const dispatch = useDispatch();
   const { _id, text, name, avatar, user, likes, comments, date } = post;
   const auth = useSelector((state) => state.authSlice);
@@ -46,37 +47,46 @@ const PostItem = ({ post }) => {
           <p className="post-date">
             Posted on <Moment format="DD MMM YYYY">{date}</Moment>
           </p>
-          {/* button like*/}
-          <button
-            type="button"
-            className="btn btn-light"
-            onClick={(e) => handleLikes(e)}
-          >
-            <FcLike />
-            {'  '}
-            {likes.length > 0 && likes.length}
-          </button>
-          {/* comments, _id = id postingan */}
-          <Link to={`/post/${_id}`} className="btn btn-primary">
-            Discussion{' '}
-            {comments.length > 0 && (
-              <span className="comment-count">{comments.length}</span>
-            )}
-          </Link>
-          {/* DELETE BUTTON. user = yang punya post, auth.user._id = user yang sedang login */}
-          {!auth.loading && user === auth.user._id && (
-            <button
-              type="button"
-              className="btn btn-danger"
-              onClick={() => dispatch(deletePostAction(_id))}
-            >
-              <i className="fas fa-times"></i>X
-            </button>
+
+          {showAction && (
+            <>
+              {/* button like*/}
+              <button
+                type="button"
+                className="btn btn-light"
+                onClick={(e) => handleLikes(e)}
+              >
+                <FcLike />
+                {'  '}
+                {likes.length > 0 && likes.length}
+              </button>
+              {/* comments, _id = id postingan */}
+              <Link to={`/post/${_id}`} className="btn btn-primary">
+                Discussion{' '}
+                {comments.length > 0 && (
+                  <span className="comment-count">{comments.length}</span>
+                )}
+              </Link>
+              {/* delete button. user = yang punya post, auth.user._id = user yang sedang login */}
+              {!auth.loading && user === auth.user._id && (
+                <button
+                  type="button"
+                  className="btn btn-danger"
+                  onClick={() => dispatch(deletePostAction(_id))}
+                >
+                  <i className="fas fa-times"></i>X
+                </button>
+              )}
+            </>
           )}
         </div>
       </div>
     </>
   );
+};
+
+PostItem.defaultProps = {
+  showAction: true,
 };
 
 export default PostItem;
