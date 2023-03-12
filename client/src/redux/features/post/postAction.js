@@ -1,5 +1,11 @@
 import axios from 'axios';
-import { getPosts, postError, updateLikes, deletePost } from './postSlice';
+import {
+  getPosts,
+  postError,
+  updateLikes,
+  deletePost,
+  addPost,
+} from './postSlice';
 import { alertAction } from '../alert/alertAction';
 
 //Get posts
@@ -53,6 +59,29 @@ export const deletePostAction = (postId) => async (dispatch) => {
     await axios.delete(`/api/posts/${postId}`);
     dispatch(deletePost(postId));
     dispatch(alertAction('Post Removed', 'success'));
+  } catch (err) {
+    dispatch(
+      postError({
+        msg: err.response.statusText,
+        status: err.response.status,
+      })
+    );
+  }
+};
+
+// add post
+export const addPostAction = (formData) => async (dispatch) => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+  try {
+    const res = await axios.post(`/api/posts`, formData, config);
+
+    dispatch(addPost(res.data));
+
+    dispatch(alertAction('Post Created', 'success'));
   } catch (err) {
     dispatch(
       postError({

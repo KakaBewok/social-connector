@@ -43,11 +43,19 @@ export const postSlice = createSlice({
         loading: false,
       };
     },
+    addPost: (state, action) => {
+      const { payload } = action;
+      return {
+        ...state,
+        posts: [payload, ...state.posts],
+        loading: false,
+      };
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { getPosts, postError, updateLikes, deletePost } =
+export const { getPosts, postError, updateLikes, deletePost, addPost } =
   postSlice.actions;
 
 export default postSlice.reducer;
