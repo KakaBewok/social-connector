@@ -6,6 +6,7 @@ import { getPostAction } from '../../redux/features/post/postAction';
 import { useParams } from 'react-router-dom';
 import PostItem from '../posts/PostItem';
 import CommentForm from './CommentForm';
+import CommentItem from './CommentItem';
 import { Link } from 'react-router-dom';
 import Alert from '../layout/Alert';
 
@@ -34,6 +35,16 @@ const Post = () => {
             </Link>
             <PostItem post={post} showAction={false} />
             <CommentForm postId={post._id} />
+            <div className="comments">
+              {/* postId yang dikirim ke commentItem untuk hit api menghapus comment */}
+              {post.comments.map((comment) => (
+                <CommentItem
+                  key={comment._id}
+                  comment={comment}
+                  postId={post._id}
+                />
+              ))}
+            </div>
           </div>
         </>
       )}
