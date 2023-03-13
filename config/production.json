@@ -1,0 +1,6 @@
+{
+    "mongoURL": "mongodb+srv://admin:123@cluster0.las9bhw.mongodb.net/?retryWrites=true&w=majority",
+    "jwtSecret": "mysecrettoken",
+    "githubClientId": "83fd631a671ab3cff123",
+    "githubSecret": "4c40fb4c07ae2aea037aadc1a114afa64d52003c"
+}
