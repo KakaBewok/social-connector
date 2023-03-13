@@ -6,7 +6,7 @@ const User = require('../../models/User');
 const Post = require('../../models/Post');
 const { check, validationResult } = require('express-validator');
 const request = require('request');
-const config = require('config');
+require('dotenv').config();
 
 // auth to check token and check validator to check input (req.body)
 
@@ -314,11 +314,7 @@ router.delete('/education/:edu_id', auth, async (req, res) => {
 router.get('/github/:username', (req, res) => {
   try {
     const option = {
-      uri: `https://api.github.com/users/${
-        req.params.username
-      }/repos?per_page=5&sort=created:asc&client_id=${config.get(
-        'githubClientId'
-      )}&client_secret=${config.get('githubSecret')}`,
+      uri: `https://api.github.com/users/${req.params.username}/repos?per_page=5&sort=created:asc&client_id=${process.env.GITHUB_CLIENT_ID}&client_secret=${process.env.GITHUB_SECRET}`,
       method: 'GET',
       headers: {
         'user-agent': 'node.js',

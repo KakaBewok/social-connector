@@ -3,9 +3,9 @@ const router = express.Router();
 const gravatar = require('gravatar');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const config = require('config');
 const { check, validationResult } = require('express-validator');
 const User = require('../../models/User.js');
+require('dotenv').config();
 
 // @route   POST api/users
 // @desc    Register User
@@ -73,7 +73,7 @@ router.post(
       // par1(id.user) - par2(sign) - par3(expTime) - par4(callback)
       jwt.sign(
         payload,
-        config.get('jwtSecret'),
+        process.env.JWT_SECRET,
         {
           expiresIn: 360000,
         },

@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const config = require('config');
+require('dotenv').config();
 
 // berfungsi untuk cek body reqnya
 module.exports = function (req, res, next) {
@@ -13,7 +13,7 @@ module.exports = function (req, res, next) {
   // jika ada token, maka diverifikasi (antara token dari header dan token dari config jwtSecret)
   try {
     // jika verify berhasil akan mereturn payload
-    const decoded = jwt.verify(token, config.get('jwtSecret'));
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
     req.user = decoded.user; // {id: user.id}
     next();
   } catch (error) {
