@@ -10,6 +10,7 @@ import {
 } from './profileSlice';
 import { alertAction } from '../alert/alertAction';
 import { accountDeleted } from '../auth/authSlice';
+import { baseUrl } from '../../api/baseUrl';
 
 // Get current users profile
 export const getCurrentProfileAction = () => async (dispatch) => {
@@ -21,7 +22,7 @@ export const getCurrentProfileAction = () => async (dispatch) => {
         'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
       },
     };
-    const url = `/api/profile/me`;
+    const url = `${baseUrl}/api/profile/me`;
     const res = await axios.get(url, config);
 
     // res.data isinya data profile yang login
@@ -50,7 +51,7 @@ export const getProfilesAction = () => async (dispatch) => {
         'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
       },
     };
-    const url = `/api/profile`;
+    const url = `${baseUrl}/api/profile`;
     const res = await axios.get(url, config);
 
     // res.data isinya semua data profile
@@ -75,7 +76,7 @@ export const getProfileByIDAction = (userID) => async (dispatch) => {
         'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
       },
     };
-    const url = `/api/profile/user/${userID}`;
+    const url = `${baseUrl}/api/profile/user/${userID}`;
     const res = await axios.get(url, config);
 
     dispatch(getProfile(res.data));
@@ -99,7 +100,7 @@ export const getGithubReposAction = (githubUsername) => async (dispatch) => {
         'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
       },
     };
-    const url = `/api/profile/github/${githubUsername}`;
+    const url = `${baseUrl}/api/profile/github/${githubUsername}`;
     const res = await axios.get(url, config);
 
     dispatch(getRepos(res.data));
@@ -125,7 +126,7 @@ export const createProfileAction =
           'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
         },
       };
-      const url = `/api/profile`;
+      const url = `${baseUrl}/api/profile`;
       // hasil dari request ini berupa object yang berisi profile
       const res = await axios.post(url, formData, config);
 
@@ -166,7 +167,7 @@ export const addExperienceAction = (formData, navigate) => async (dispatch) => {
         'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
       },
     };
-    const url = `/api/profile/experience`;
+    const url = `${baseUrl}/api/profile/experience`;
     const res = await axios.put(url, formData, config);
 
     dispatch(updateProfile(res.data));
@@ -201,7 +202,7 @@ export const addEducationAction = (formData, navigate) => async (dispatch) => {
         'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
       },
     };
-    const url = `/api/profile/education`;
+    const url = `${baseUrl}/api/profile/education`;
     const res = await axios.put(url, formData, config);
 
     dispatch(updateProfile(res.data));
@@ -236,7 +237,7 @@ export const deleteExperienceAction = (id) => async (dispatch) => {
         'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
       },
     };
-    const url = `/api/profile/experience/${id}`;
+    const url = `${baseUrl}/api/profile/experience/${id}`;
     const res = await axios.delete(url, config);
 
     dispatch(updateProfile(res.data));
@@ -269,7 +270,7 @@ export const deleteEducationAction = (id) => async (dispatch) => {
         'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
       },
     };
-    const url = `/api/profile/education/${id}`;
+    const url = `${baseUrl}/api/profile/education/${id}`;
     const res = await axios.delete(url, config);
 
     dispatch(updateProfile(res.data));
@@ -303,7 +304,7 @@ export const deleteAccountAction = () => async (dispatch) => {
           'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
         },
       };
-      const url = `/api/profile`;
+      const url = `${baseUrl}/api/profile`;
       await axios.delete(url, config);
 
       dispatch(clearProfile());

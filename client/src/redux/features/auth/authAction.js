@@ -11,12 +11,13 @@ import {
 import { clearProfile } from '../profile/profileSlice';
 import { alertAction } from '../alert/alertAction';
 import setAuthToken from '../../../utils/setAuthToken';
+import { baseUrl } from '../../api/baseUrl';
 
 // Register User
 export const registerAction =
   ({ name, email, password }, navigate) =>
   async (dispatch) => {
-    const url = `/api/users`;
+    const url = `${baseUrl}/api/users`;
     const config = {
       headers: {
         'Content-Type': 'application/json',
@@ -45,7 +46,7 @@ export const registerAction =
 
 // Login User
 export const loginAction = (email, password) => async (dispatch) => {
-  const url = `/api/auth`;
+  const url = `${baseUrl}/api/auth`;
   const config = {
     headers: {
       'Content-Type': 'application/json',
@@ -94,7 +95,7 @@ export const loadUserAction = () => async (dispatch) => {
         'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
       },
     };
-    const res = await axios.get(`/api/auth`, config);
+    const res = await axios.get(`${baseUrl}/api/auth`, config);
 
     dispatch(userLoaded(res.data));
   } catch (error) {
