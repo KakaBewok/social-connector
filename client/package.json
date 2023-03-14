@@ -46,5 +46,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://social-connector-api-git-prod-kakabewok.vercel.app/"
+  "proxy": "https://social-connector-api-git-prod-kakabewok.vercel.app"
 }

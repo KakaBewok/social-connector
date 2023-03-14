@@ -14,8 +14,15 @@ import { accountDeleted } from '../auth/authSlice';
 // Get current users profile
 export const getCurrentProfileAction = () => async (dispatch) => {
   try {
-    const url = '/api/profile/me';
-    const res = await axios.get(url);
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+      },
+    };
+    const url = `/api/profile/me`;
+    const res = await axios.get(url, config);
 
     // res.data isinya data profile yang login
     dispatch(getProfile(res.data));
@@ -36,8 +43,15 @@ export const getCurrentProfileAction = () => async (dispatch) => {
 export const getProfilesAction = () => async (dispatch) => {
   dispatch(clearProfile);
   try {
-    const url = '/api/profile';
-    const res = await axios.get(url);
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+      },
+    };
+    const url = `/api/profile`;
+    const res = await axios.get(url, config);
 
     // res.data isinya semua data profile
     dispatch(getProfiles(res.data));
@@ -54,8 +68,15 @@ export const getProfilesAction = () => async (dispatch) => {
 // Get profile by ID
 export const getProfileByIDAction = (userID) => async (dispatch) => {
   try {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+      },
+    };
     const url = `/api/profile/user/${userID}`;
-    const res = await axios.get(url);
+    const res = await axios.get(url, config);
 
     dispatch(getProfile(res.data));
   } catch (err) {
@@ -71,8 +92,15 @@ export const getProfileByIDAction = (userID) => async (dispatch) => {
 // Get github repos
 export const getGithubReposAction = (githubUsername) => async (dispatch) => {
   try {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+      },
+    };
     const url = `/api/profile/github/${githubUsername}`;
-    const res = await axios.get(url);
+    const res = await axios.get(url, config);
 
     dispatch(getRepos(res.data));
   } catch (err) {
@@ -93,9 +121,11 @@ export const createProfileAction =
       const config = {
         headers: {
           'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
         },
       };
-      const url = '/api/profile';
+      const url = `/api/profile`;
       // hasil dari request ini berupa object yang berisi profile
       const res = await axios.post(url, formData, config);
 
@@ -132,9 +162,11 @@ export const addExperienceAction = (formData, navigate) => async (dispatch) => {
     const config = {
       headers: {
         'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
       },
     };
-    const url = '/api/profile/experience';
+    const url = `/api/profile/experience`;
     const res = await axios.put(url, formData, config);
 
     dispatch(updateProfile(res.data));
@@ -165,9 +197,11 @@ export const addEducationAction = (formData, navigate) => async (dispatch) => {
     const config = {
       headers: {
         'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
       },
     };
-    const url = '/api/profile/education';
+    const url = `/api/profile/education`;
     const res = await axios.put(url, formData, config);
 
     dispatch(updateProfile(res.data));
@@ -195,8 +229,15 @@ export const addEducationAction = (formData, navigate) => async (dispatch) => {
 // Delete experience
 export const deleteExperienceAction = (id) => async (dispatch) => {
   try {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+      },
+    };
     const url = `/api/profile/experience/${id}`;
-    const res = await axios.delete(url);
+    const res = await axios.delete(url, config);
 
     dispatch(updateProfile(res.data));
 
@@ -221,8 +262,15 @@ export const deleteExperienceAction = (id) => async (dispatch) => {
 // Delete education
 export const deleteEducationAction = (id) => async (dispatch) => {
   try {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+      },
+    };
     const url = `/api/profile/education/${id}`;
-    const res = await axios.delete(url);
+    const res = await axios.delete(url, config);
 
     dispatch(updateProfile(res.data));
 
@@ -248,8 +296,15 @@ export const deleteEducationAction = (id) => async (dispatch) => {
 export const deleteAccountAction = () => async (dispatch) => {
   if (window.confirm("Are you sure? This can't be undone! ")) {
     try {
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+        },
+      };
       const url = `/api/profile`;
-      const res = await axios.delete(url);
+      await axios.delete(url, config);
 
       dispatch(clearProfile());
       dispatch(accountDeleted());

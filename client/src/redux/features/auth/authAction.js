@@ -16,10 +16,12 @@ import setAuthToken from '../../../utils/setAuthToken';
 export const registerAction =
   ({ name, email, password }, navigate) =>
   async (dispatch) => {
-    const url = '/api/users';
+    const url = `/api/users`;
     const config = {
       headers: {
         'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
       },
     };
     const body = JSON.stringify({ name, email, password });
@@ -43,10 +45,12 @@ export const registerAction =
 
 // Login User
 export const loginAction = (email, password) => async (dispatch) => {
-  const url = '/api/auth';
+  const url = `/api/auth`;
   const config = {
     headers: {
       'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
     },
   };
   const body = JSON.stringify({ email, password });
@@ -83,7 +87,14 @@ export const loadUserAction = () => async (dispatch) => {
   }
 
   try {
-    const res = await axios.get('/api/auth');
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+      },
+    };
+    const res = await axios.get(`/api/auth`, config);
 
     dispatch(userLoaded(res.data));
   } catch (error) {
