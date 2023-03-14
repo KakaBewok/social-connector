@@ -50,7 +50,7 @@ export const getProfilesAction = () => async (dispatch) => {
         'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
       },
     };
-    const url = `/api/profile`;
+    const url = `https://social-connector-api-git-prod-kakabewok.vercel.app/api/profile`;
     const res = await axios.get(url, config);
 
     // res.data isinya semua data profile
