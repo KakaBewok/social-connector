@@ -3,9 +3,9 @@ import Moment from 'react-moment';
 import { useDispatch } from 'react-redux';
 import { deleteEducationAction } from '../../redux/features/profile/profileAction';
 
-const Education = ({ education }) => {
+const Education = ({ Educations }) => {
   const dispatch = useDispatch();
-  const Educations = education.map((edu) => (
+  const educations = Educations.map((edu) => (
     <tr key={edu._id}>
       <td>{edu.school}</td>
       <td className="hide-sm">{edu.degree}</td>
@@ -40,7 +40,7 @@ const Education = ({ education }) => {
             <th>Action</th>
           </tr>
         </thead>
-        <tbody>{Educations}</tbody>
+        <tbody>{educations}</tbody>
       </table>
     </>
   );

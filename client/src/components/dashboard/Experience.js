@@ -3,9 +3,9 @@ import Moment from 'react-moment';
 import { useDispatch } from 'react-redux';
 import { deleteExperienceAction } from '../../redux/features/profile/profileAction';
 
-const Experience = ({ experience }) => {
+const Experience = ({ Experiences }) => {
   const dispatch = useDispatch();
-  const experiences = experience.map((exp) => (
+  const experiences = Experiences.map((exp) => (
     <tr key={exp._id}>
       <td>{exp.company}</td>
       <td className="hide-sm">{exp.title}</td>

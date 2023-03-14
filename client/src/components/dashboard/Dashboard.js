@@ -37,8 +37,8 @@ const Dashboard = () => {
               <>
                 <Alert />
                 <DashboardAction />
-                <Experience experience={profile.experience} />
-                <Education education={profile.education} />
+                <Experience Experiences={profile.experience} />
+                <Education Educations={profile.education} />
 
                 <div className="my-2">
                   <button
