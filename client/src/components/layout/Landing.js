@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react';
 import { Link } from 'react-router-dom';
@@ -13,25 +15,30 @@ const Landing = () => {
   }
 
   return (
-    <section className="landing">
-      <div className="dark-overlay">
-        <div className="landing-inner">
-          <h1 className="x-large">Developer Connector</h1>
-          <p className="lead">
+    <div
+      className="hero h-screen"
+      style={{
+        backgroundImage: `url("./images/showcase.jpg")`,
+      }}
+    >
+      <div className="hero-overlay bg-opacity-60"></div>
+      <div className="hero-content text-center text-neutral-content">
+        <div className="max-w-lg">
+          <h1 className="mb-5 text-5xl font-bold">Developer Connector</h1>
+          <p className="mb-5">
             Create a developer profile/portfolio, share posts and get help from
             other developers
           </p>
-          <div className="buttons">
-            <Link to="/register" className="btn btn-primary">
-              Sign Up
-            </Link>
-            <Link to="/login" className="btn btn-light">
-              Login
+          <div className="flex justify-evenly max-w-[13rem] mx-auto">
+            <Link to="/register">
+              <button className="btn btn-primary bg-gradient-to-l from-[#5EFCE8]  to-[#736EFE] border-none capitalize hover:opacity-90 tracking-wider">
+                Get Started
+              </button>
             </Link>
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 
