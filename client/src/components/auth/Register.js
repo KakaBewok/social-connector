@@ -67,7 +67,7 @@ const Register = () => {
               </div>
             </div>
             {/* email */}
-            <div className="flex flex-col mb-1">
+            <div className="flex flex-col mb-2">
               <div
                 className="flex relative tooltip tooltip-top"
                 data-tip="This site uses Gravatar so if you want a profile image, use a Gravatar email"

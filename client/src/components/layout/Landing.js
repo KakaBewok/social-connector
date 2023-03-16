@@ -18,7 +18,7 @@ const Landing = () => {
     <div
       className="hero h-screen"
       style={{
-        backgroundImage: `url("./images/showcase.jpg")`,
+        backgroundImage: `url("./images/showcase3.jpg")`,
       }}
     >
       <div className="hero-overlay bg-opacity-60"></div>

@@ -25,7 +25,7 @@ const Navbar = () => {
   };
 
   const authLinks = (
-    <div className="navbar bg-base-100 bg-transparent backdrop-blur-sm">
+    <div className="navbar bg-base-100 bg-transparent backdrop-blur-md">
       {/* brand */}
       <div className="flex-1">
         <h1 className="text-transparent bg-clip-text bg-gradient-to-r from-[#5EFCE8]  to-[#736EFE] ml-3 normal-case text-lg md:text-2xl font-bold hover:translate-x-1 transition-all duration-300">
@@ -234,7 +234,7 @@ const Navbar = () => {
               <Link to="/login">Login</Link>
             </li>
             <li>
-              <button className="btn btn-active btn-primary capitalize text-lg font-semibold text-white mt-2 bg-gradient-to-r from-[#5EFCE8]  to-[#736EFE] border-none tracking-wider">
+              <button className="btn btn-active btn-primary capitalize text-md font-semibold text-white mt-2 bg-gradient-to-r from-[#5EFCE8]  to-[#736EFE] border-none tracking-wider">
                 <Link to="/register">Register</Link>
               </button>
             </li>

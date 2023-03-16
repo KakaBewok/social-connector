@@ -1,43 +1,60 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { AiOutlineCheck } from 'react-icons/ai';
 
 const ProfileItem = ({ profile }) => {
   const { _id, name, avatar } = profile.user;
-  const { status, company, location, skills } = profile;
+  const { status, company, location } = profile;
 
   return (
     <>
-      <div className="profile bg-light">
-        <img className="round-img" src={avatar} alt={name} />
-        <div>
-          <h2>{name}</h2>
-          <p>
-            {status} {company && <span>at {company}</span>}
-          </p>
-          <p className="my-1">{location && <span>{location}</span>}</p>
-          <Link to={`/profile/${_id}`} className="btn btn-primary">
-            View Profile
-          </Link>
+      <div className="max-w-sm w-[85%] sm:w-[20rem] md:w-[20rem] lg:w-[22rem] rounded-md mx-auto my-11 shadow-xl p-5">
+        {/* profile */}
+        <div className="w-full py-5">
+          <img
+            className="rounded-full w-44 border-slate-200 border-4 mx-auto hover:opacity-90 transition-all duration-500"
+            src={avatar}
+            alt={name}
+          />
+          <div className="text-center flex flex-col gap-2 mt-4">
+            <h2 className="font-bold text-3xl">{name}</h2>
+            <p className="text-sm">
+              {status} {company && <span>at {company}</span>}
+            </p>
+            <p className="text-sm">{location && <span>{location}</span>}</p>
+            <Link
+              to={`/profile/${_id}`}
+              className="btn btn-primary mx-auto text-white mt-2 bg-gradient-to-l from-[#5EFCE8]  to-[#736EFE] border-none tracking-wider capitalize hover:opacity-80"
+            >
+              View Profile
+            </Link>
+          </div>
         </div>
-        <ul>
-          {/* hanya menampilkan 4 skill saja dengan method slice() */}
-          {skills.slice(0, 4).map((skill, index) => (
-            <li key={index} className="text-primary">
-              <AiOutlineCheck /> {skill}
-            </li>
-          ))}
+        {/* skills */}
+        {/* <div className="w-1/2 border border-blue-500">
+          <h2 className="text-center font-bold text-2xl pt-5 pb-10 tracking-wider">
+            Skill Set
+          </h2>
+          <div className="flex flex-wrap gap-5">
+            {skills.slice(0, 5).map((skill, index) => (
+              <div
+                key={index}
+                className="text-xs font-medium shadow-md bg-[#736EFE] px-4 py-2 rounded-md text-white"
+              >
+                {skill}
+              </div>
+            ))}
+          </div>
           <li>
             {skills.length > 4 ? (
               <>
-                <AiOutlineCheck className="text-primary" />
                 <Link to={`/profile/${_id}`}> . . . . .</Link>
               </>
             ) : (
               ''
             )}
           </li>
-        </ul>
+        </div> */}
       </div>
     </>
   );

@@ -22,15 +22,15 @@ const Profiles = () => {
         </div>
       ) : (
         <>
-          <div className="container">
-            <h1 className="large text-primary">Profiles</h1>
-            <p className="lead">
-              <AiOutlineBranches
-                style={{ paddingTop: '4px', marginRight: '4px' }}
-              />
-              Browse and connect with developers
-            </p>
-            <div className="profiles">
+          <div className="my-20">
+            <h1 className="text-lg md:text-3xl font-bold ml-8 mb-1 md:mb-3">
+              Profiles
+            </h1>
+            <div className="ml-8 mb-6 flex flex-wrap gap-2 text-sm">
+              <AiOutlineBranches className="mt-1" />
+              <p>Browse and connect with developers</p>
+            </div>
+            <div className="flex flex-wrap gap-1 justify-center mx-auto">
               {profiles.length > 0 ? (
                 <>
                   {profiles.map((profile) => (
@@ -38,7 +38,9 @@ const Profiles = () => {
                   ))}
                 </>
               ) : (
-                <h1>No profiles found ...</h1>
+                <h1 className="absolute top-[50%] font-bold text-2xl">
+                  No Profiles Found ...
+                </h1>
               )}
             </div>
           </div>
